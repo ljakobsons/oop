@@ -1,0 +1,115 @@
+:root {
+    --background: black;
+    --foreground: white;
+    --text: white;
+    --disabled: gray;
+
+    --correct: green;
+    --incorrect: red;
+
+    --base-font: "Arial Rounded MT Bold",
+        sans-serif;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.stats {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 30px;
+}
+
+.stats .target {
+    min-width: 30px;
+    height: 100%;
+    border: 1px solid var(--foreground);
+    color: var(--text);
+    font-family: var(--base-font);
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.stats .timer {
+    min-width: 30px;
+    height: 100%;
+    border: 1px solid var(--foreground);
+    color: var(--text);
+    font-family: var(--base-font);
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.stats .grid-size {
+    border-radius: 0;
+    border: 1px solid var(--foreground);
+    color: var(--text);
+    background-color: transparent;
+    height: 100%;
+    min-width: 50px;
+    cursor: not-allowed;
+}
+
+.main {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 500px;
+    aspect-ratio: 1;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.correct {
+    background-color: var(--correct) !important;
+    color: var(--disabled) !important;
+    border: 1px solid var(--disabled) !important;
+}
+
+.incorrect {
+    background-color: var(--incorrect) !important;
+    color: var(--disabled) !important;
+    border: 1px solid var(--disabled) !important;
+}
+
+.grid .tile {
+    width: calc(25% - 10px);
+    aspect-ratio: 1;
+    box-sizing: border-box;
+
+    border: 1px solid var(--foreground);
+    color: var(--text);
+    font-size: 40px;
+    font-family: var(--base-font);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+    transition: 0.15s;
+
+    &:hover {
+        transform: scale(0.9);
+    }
+
+    &:active {
+        transform: scale(0.8);
+    }
+}
