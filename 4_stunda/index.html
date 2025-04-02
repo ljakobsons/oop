@@ -1,22 +1,26 @@
 <html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
 
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
+	<body>
+		<div class="stats">
+			<div class="score" id="score">0</div>
+			<div class="timer" id="timer">0:00</div>
+			<div class="lives" id="lives">❤️❤️❤️</div>
+			<!-- <select class="grid-size" class="gridSize" disabled></select> -->
+		</div>
 
-<body>
+		<div class="stats">
+			<div class="target" id="target">-</div>
+		</div>
 
-    <div class="stats">
-        <div class="target" id="target">-</div>
-        <div class="timer" id="timer">0:00</div>
-        <select class="grid-size" class="gridSize" disabled></select>
-    </div>
+		<div class="main">
+			<div class="grid" id="gameGrid"></div>
+		</div>
 
-    <div class="main">
-        <div class="grid" id="gameGrid"></div>
-    </div>
+		<div id="message" class="message"></div>
 
-    <script src="script.js"></script>
-</body>
-
+		<script src="script.js"></script>
+	</body>
 </html>

@@ -3,6 +3,12 @@ let threshold = 3
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 let targetLetter = "S"
 
+let score = 0;
+let lives = 3;
+
+let message = document.getElementById('message')
+
+
 function generateGrid() {
     let grid = document.getElementById('gameGrid')
 
@@ -11,6 +17,8 @@ function generateGrid() {
         tile.classList.add("tile")
         grid.append(tile)
     }
+
+    return;
 }
 
 function genRandLetter() {
@@ -31,27 +39,48 @@ function generateLetters() {
     }
 
     for (let j = 0; j < threshold; j++) {
-        let tile = tiles[Math.floor(Math.random() * tiles.length)]
+        let availableTiles = Array.from(tiles).filter(tile => tile.innerHTML != targetLetter)
 
-        while (tile.innerHTML == targetLetter) {
-            tile = tiles[Math.floor(Math.random() * alphabet.length)]
-        }
+        if (availableTiles.length === 0) break; // Exit if no available tiles
 
+        let tile = availableTiles[Math.floor(Math.random() * availableTiles.length)]
         tile.innerHTML = targetLetter
     }
 
     return tiles
 }
 
-function gameSequence() {
+function deductLife() {
+    lives--
+    let lifeIndicator = document.getElementById('lives')
+    lifeIndicator.innerHTML = ""
+    for (let i = 0; i < lives; i++) {
+        lifeIndicator.innerHTML += "❤️"
+    }
+}
+
+async function gameSequence() {
     let tiles = generateLetters()
 
+    let correctCount = 0
+
     for (let i = 0; i < tiles.length; i++) {
-        tiles[i].addEventListener("mousedown", (e) => {
+        tiles[i].addEventListener("mousedown", () => {
             if (tiles[i].innerHTML == targetLetter) {
                 tiles[i].classList.add("correct")
+                correctCount++
+                if (correctCount == threshold) {
+                    score++
+                    let scoreIndicator = document.getElementById('score')
+                    scoreIndicator.innerHTML = score
+                    return;
+                }
             } else if (tiles[i].innerHTML != targetLetter) {
                 tiles[i].classList.add("incorrect")
+                deductLife()
+                if (lives == 0) {
+                    return;
+                }
             }
         });
     }
@@ -61,6 +90,15 @@ function gameSequence() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    generateGrid()
 
-    gameSequence(generateGrid())
+    gameSequence();
+
+    while (lives > 0) {
+        gameSequence();
+    }
+
+    grid.styles.display = "none"
+    message.innerHTML = "Game Over!"
+    return;
 })
