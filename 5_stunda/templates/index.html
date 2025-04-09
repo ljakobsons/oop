@@ -1,6 +1,13 @@
 <html>
-	<head> </head>
+	<head>
+		<title>SQL sandbox</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/styles.css') }}"
+		/>
+	</head>
 	<body>
+		<!-- <script src="https://livejs.com/live.js"></script> -->
 		<textarea
 			type="text"
 			id="input"
@@ -9,6 +16,7 @@
 		></textarea>
 		<!-- <button id="submit">Submit</button> -->
 		<div id="output"></div>
+		<div id="table-list"></div>
 
 		<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 	</body>

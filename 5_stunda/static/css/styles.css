@@ -1,0 +1,51 @@
+body {
+    background-color: #3d3d3d;
+    font-family: monospace, monospace;
+    color: #f6f6f6;
+}
+
+#input {
+    width: 100%;
+    min-height: 100px;
+    background-color: #3d3d3d;
+    color: #f6f6f6;
+    border: none;
+    border-bottom: 1px solid #f6f6f6;
+    font-family: monospace, monospace;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
+
+    outline: none;
+    transition: background-color 0.15s;
+
+    &:focus {
+        background-color: #4d4d4d;
+        color: #f6f6f6;
+        border-bottom: 2px solid #f6f6f6;
+    }
+}
+
+h2 {
+    color: #f6f6f6;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 0 5px;
+    padding: 5px 7px;
+    box-sizing: border-box;
+    width: fit-content;
+    background-color: #4d4d4d;
+}
+
+#table-list {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+
+}

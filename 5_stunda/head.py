@@ -54,5 +54,29 @@ def api_call():
         )
 
 
+@app.route("/api/tables", methods=["GET"])
+def get_table_names():
+    try:
+        conn = sqlite3.connect("main.db")
+        cursor = conn.cursor()
+        cursor.execute('SELECT name FROM sqlite_master WHERE type="table";')
+        tables = cursor.fetchall()
+        conn.close()
+
+        table_names = [table[0] for table in tables]
+        print(table_names)
+        return Response(
+            response=table_names,
+            status=200,
+            mimetype="application/json",
+        )
+    except sqlite3.Error as e:
+        return Response(
+            response=str(e),
+            status=400,
+            mimetype="application/text",
+        )
+
+
 if __name__ == "__main__":
     app.run(debug=True)
